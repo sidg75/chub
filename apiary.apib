@@ -7,16 +7,15 @@ CHUB REST API provides access to Cloud Central Conversions (ERP only).
 
 # Group Requests
 
-    ## Conversions Collection [/request{?limit}]
+## Conversions Collection [/request{?limit}]
 
-    + Parameters
-
-        + limit (number, optional) - The maximum number of results to return.
-            + Default: '200'
++ Parameters
+    + limit (number, optional) - The maximum number of results to return.
+        + Default: '200'
         
-    ### List All Conversion requests [GET]
+### List All Conversion requests [GET]
 
-    + Response 200 (application/json)
++ Response 200 (application/json)
     [
         {
             "question": "Favourite programming language?",
@@ -44,7 +43,7 @@ CHUB REST API provides access to Cloud Central Conversions (ERP only).
     ]
 
 
-    ### Submit a New Conversion request [POST]
+### Submit a New Conversion request [POST]
 
 You may create your own question using this action.It takes a JSON object containing a question and a collection of answers in the form of choices.
 
@@ -89,12 +88,12 @@ You may create your own question using this action.It takes a JSON object contai
             }
  
 
-    ## Conversion Request Batch by Key [/request/batch/{batchId}]
+## Conversion Request Batch by Key [/request/batch/{batchId}]
 
 + Parameters
     + batchId: 1 (number)
     
-    ### List specific Conversion batch for a request [GET]
+### List specific Conversion batch for a request [GET]
 
 + Response 200 (application/json)
 
@@ -125,7 +124,7 @@ You may create your own question using this action.It takes a JSON object contai
     ]
     
     
-    ## Conversion Request by Key [/request/{requestId}]
+## Conversion Request by Key [/request/{requestId}]
 + Parameters
     + requestId: 1 (number)
     
@@ -208,6 +207,103 @@ You may create your own question using this action.It takes a JSON object contai
             ]
         }
         ]
+
+
+# Group Reports
+
+## Conversions Status Report [/report/conversion/status]
+        
+### List All Conversion requests status count [GET]
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }
+                ]
+            }
+        ]
+
+## Conversions Entity Count Report [/report/conversion/entity/count]
+
+### List All Conversion requests entity count [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }
+                ]
+            }
+        ]
+            
+## Conversions Customer Count Report [/report/conversion/customer/count]
+
+### List All Conversion requests customer count [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }
+                ]
+            }
+        ]
+        
 
 # Group Validations
 
@@ -1527,98 +1623,3 @@ You may create your own question using this action.It takes a JSON object contai
                 }
             ]
         }
-
-# Group Reports
-
-## Conversions Status Report [/report/conversion/status]
-    
-    ### List All Conversion requests status count [GET]
-
-    + Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-        ]
-
-## Conversions Status Report [/report/conversion/entity/count]
-
-    ### List All Conversion requests entity count [GET]
-
-    + Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-        ]
-            
-## Conversions Status Report [/report/conversion/customer/count]
-
-    ### List All Conversion requests customer count [GET]
-
-    + Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-        ]
