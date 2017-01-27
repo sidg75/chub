@@ -1,1497 +1,370 @@
-FORMAT: 1A
-HOST: http://atgsoa12.kbace.com:7001/chub/data/resources/service/
+FORMAT: 1 A
+HOST: http: //atgsoa12.kbace.com:7001/chub/data/resources/service/
 
-# CHUB
+#CHUB
 
-CHUB API's provide access to Cloud Central Conversions and data (ERP only).
+CHUB REST API provides access to Cloud Central Conversions (ERP only).
 
-## Conversions Collection [/request]
+#Group Requests
 
-### List All Conversion requests [GET]
+## Conversions Collection[/request]
 
-+ Response 200 (application/json)
+###List All Conversion requests[GET]
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-## Conversion Request by Key [/request/{requestId}]
-
-### List specific Conversion request [GET]
-
-+ Response 200 (application/json)
-
-        {
-        "request" : 
-            {
-                "requestId" : 681,
-                "creationDate" : "2017-01-25",
-                "createdBy" : "admin-default",
-                "lastUpdateDate" : "2017-01-25",
-                "lastUpdatedBy" : "admin-default",
-                "lastUpdateLogin" : -1,
-                "status" : "RUNNING",
-                "batchId" : "20170125122345",
-                "propertyFile" : "test_win_properties.json",
-                "errorFile" : null,
-                "propertyFileContent" : "",
-                "useBatchId" : null,
-                "usePropBatchId" : null,
-                "copyCat" : null,
-                "deleteCat" : null,
-                "runSIP" : null,
-                "sourceSys" : null,
-                "instType" : "DEV",
-                "entityRows" : 
-                [ 
-                    {
-                        "requestEntityId" : 381,
-                        "requestId" : 681,
-                        "entityShortName" : "PUOR",
-                        "operationType" : "VAL",
-                        "status" : null,
-                        "batchId" : "20170125122345",
-                        "copyCat" : "N",
-                        "deleteCat" : "N",
-                        "useBatchId" : "20170124055938",
-                        "runSIP" : "N",
-                        "entityFile" : "PoImportOrders.zip",
-                        "errorFile" : "PoImportOrders.zip"
-                    } 
-                ],
-                "batchDataLogs" : null
-            }
-        }
-
-## Conversion Request log of Batch by Key [/request/batch/{batchId}]
-
-### List specific Conversion request log of batch [GET]
-
-+ Response 200 (application/json)
++Response 200(application / json)
 
         [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-## Conversion Batch by Key [/batch/{batchId}]
-
-### List specific Conversion batch [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-## Conversion Validation by Key [/validation/{validationId}]
-
-### List specific Conversion Validation [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-
-
-### Submit a New Conversion [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
         {
             "question": "Favourite programming language?",
+            "published_at": "2015-08-05T08:40:51.620Z",
             "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
-            
-## Entity Validatons Collection [/validation/{entityId}]
-
-### List All Entity Validations [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-        
-       
-## Conversion Validation result by Entity Key [/validation/result/{entityId}]
-
-### List specific Conversion Validation result for an Entity [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-        
-## Conversion Validation Run result by Batch Key [/validation/run/{batchId}]
-
-### List specific Conversion Validation run result for a batch [GET]
-
-+ Response 200 (application/json)
-
-        {
-        "metadata": 
-        {
-            "entityName": "PUOR",
-            "todayDt": "08-JAN-2017",
-            "csvName": "oracle.csv"
-        },
-        "tables": 
-        [
-            {
-            "name": "FCU_PO_HEADERS_INTERFACE",
-            "results": 
-                {
-                    "columns": 
-                    [
-                        {
-                            "column_name": "CREATION_DATE",
-                            "data_type": "DATE",
-                            "data_length": 7
-                        },
-                        {
-                            "column_name": "ERROR_MESSAGE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4000
-                        },
-                        {
-                            "column_name": "ERROR_FLAG",
-                            "data_type": "VARCHAR2",
-                            "data_length": 1
-                        },
-                        {
-                            "column_name": "THIRD_PTY_REG_NUM",
-                            "data_type": "VARCHAR2",
-                            "data_length": 50
-                        },
-                        {
-                            "column_name": "FIRST_PTY_REG_NUM",
-                            "data_type": "VARCHAR2",
-                            "data_length": 50
-                            },
-                            {
-                            "column_name": "SERVICE_LEVEL",
-                            "data_type": "VARCHAR2",
-                            "data_length": 80
-                            },
-                            {
-                            "column_name": "MODE_OF_TRANSPORT",
-                            "data_type": "VARCHAR2",
-                            "data_length": 80
-                            },
-                            {
-                            "column_name": "AGENT_EMAIL_ADDRESS",
-                            "data_type": "VARCHAR2",
-                            "data_length": 960
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP10",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP9",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP8",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP7",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP6",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP5",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP4",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP3",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP2",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_TIMESTAMP1",
-                            "data_type": "TIMESTAMP(6)",
-                            "data_length": 11
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER10",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER9",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER8",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER7",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER6",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER5",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER4",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER3",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER2",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_NUMBER1",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE10",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE9",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE8",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE7",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE6",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE5",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE4",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE3",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE2",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_DATE1",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ATTRIBUTE20",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE19",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE18",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE17",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE16",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE15",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE14",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE13",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE12",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE11",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE10",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE9",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE8",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE7",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE6",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE5",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE4",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE3",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE2",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE1",
-                            "data_type": "VARCHAR2",
-                            "data_length": 600
-                            },
-                            {
-                            "column_name": "ATTRIBUTE_CATEGORY",
-                            "data_type": "VARCHAR2",
-                            "data_length": 120
-                            },
-                            {
-                            "column_name": "TAX_DOCUMENT_SUBTYPE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 960
-                            },
-                            {
-                            "column_name": "DEFAULT_TAXATION_COUNTRY",
-                            "data_type": "VARCHAR2",
-                            "data_length": 8
-                            },
-                            {
-                            "column_name": "NOTE_TO_RECEIVER",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4000
-                            },
-                            {
-                            "column_name": "NOTE_TO_VENDOR",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4000
-                            },
-                            {
-                            "column_name": "CONFIRMING_ORDER_FLAG",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4
-                            },
-                            {
-                            "column_name": "EMAIL_ADDRESS",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4000
-                            },
-                            {
-                            "column_name": "FAX",
-                            "data_type": "VARCHAR2",
-                            "data_length": 240
-                            },
-                            {
-                            "column_name": "SUPPLIER_NOTIF_METHOD",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "ACCEPTANCE_WITHIN_DAYS",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "ACCEPTANCE_REQUIRED_FLAG",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4
-                            },
-                            {
-                            "column_name": "CHANGE_ORDER_DESC",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4000
-                            },
-                            {
-                            "column_name": "ORIGINATOR_ROLE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "PAYMENT_TERMS",
-                            "data_type": "VARCHAR2",
-                            "data_length": 200
-                            },
-                            {
-                            "column_name": "PAY_ON_CODE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "FREIGHT_TERMS",
-                            "data_type": "VARCHAR2",
-                            "data_length": 120
-                            },
-                            {
-                            "column_name": "FREIGHT_CARRIER",
-                            "data_type": "VARCHAR2",
-                            "data_length": 1440
-                            },
-                            {
-                            "column_name": "FOB",
-                            "data_type": "VARCHAR2",
-                            "data_length": 120
-                            },
-                            {
-                            "column_name": "VENDOR_DOC_NUM",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "VENDOR_CONTACT",
-                            "data_type": "VARCHAR2",
-                            "data_length": 1440
-                            },
-                            {
-                            "column_name": "VENDOR_SITE_CODE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 60
-                            },
-                            {
-                            "column_name": "VENDOR_NUM",
-                            "data_type": "VARCHAR2",
-                            "data_length": 120
-                            },
-                            {
-                            "column_name": "VENDOR_NAME",
-                            "data_type": "VARCHAR2",
-                            "data_length": 1440
-                            },
-                            {
-                            "column_name": "SHIP_TO_LOCATION",
-                            "data_type": "VARCHAR2",
-                            "data_length": 240
-                            },
-                            {
-                            "column_name": "BILL_TO_LOCATION",
-                            "data_type": "VARCHAR2",
-                            "data_length": 240
-                            },
-                            {
-                            "column_name": "COMMENTS",
-                            "data_type": "VARCHAR2",
-                            "data_length": 960
-                            },
-                            {
-                            "column_name": "RATE_DATE",
-                            "data_type": "DATE",
-                            "data_length": 7
-                            },
-                            {
-                            "column_name": "RATE_TYPE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 120
-                            },
-                            {
-                            "column_name": "RATE",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "CURRENCY_CODE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 60
-                            },
-                            {
-                            "column_name": "AGENT_NAME",
-                            "data_type": "VARCHAR2",
-                            "data_length": 4000
-                            },
-                            {
-                            "column_name": "BILLTO_BU_NAME",
-                            "data_type": "VARCHAR2",
-                            "data_length": 240
-                            },
-                            {
-                            "column_name": "SOLDTO_LE_NAME",
-                            "data_type": "VARCHAR2",
-                            "data_length": 960
-                            },
-                            {
-                            "column_name": "REQ_BU_NAME",
-                            "data_type": "VARCHAR2",
-                            "data_length": 960
-                            },
-                            {
-                            "column_name": "PRC_BU_NAME",
-                            "data_type": "VARCHAR2",
-                            "data_length": 960
-                            },
-                            {
-                            "column_name": "STYLE_DISPLAY_NAME",
-                            "data_type": "VARCHAR2",
-                            "data_length": 960
-                            },
-                            {
-                            "column_name": "DOCUMENT_TYPE_CODE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "DOCUMENT_NUM",
-                            "data_type": "VARCHAR2",
-                            "data_length": 80
-                            },
-                            {
-                            "column_name": "APPROVAL_ACTION",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "INTERFACE_SOURCE_CODE",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "BATCH_ID",
-                            "data_type": "NUMBER",
-                            "data_length": 22
-                            },
-                            {
-                            "column_name": "ACTION",
-                            "data_type": "VARCHAR2",
-                            "data_length": 100
-                            },
-                            {
-                            "column_name": "INTERFACE_HEADER_KEY",
-                            "data_type": "VARCHAR2",
-                            "data_length": 200
-                            }
-                        ],
-                        "rows": 
-                        {
-                        "array": 
-                            [
-                                {
-                                    "INTERFACE_HEADER_KEY": "PO 2",
-                                    "ACTION": "ORIGINAL",
-                                    "BATCH_ID": 1386,
-                                    "DOCUMENT_TYPE_CODE": "STANDARD",
-                                    "PRC_BU_NAME": "Corporate",
-                                    "REQ_BU_NAME": "Corporate",
-                                    "SOLDTO_LE_NAME": "KBACE Technologies, Inc.",
-                                    "BILLTO_BU_NAME": "Corporate",
-                                    "AGENT_NAME": "Presenter",
-                                    "CURRENCY_CODE": "USD",
-                                    "COMMENTS": "New Standard Purchase Order",
-                                    "BILL_TO_LOCATION": "CORPORATE",
-                                    "SHIP_TO_LOCATION": "CORPORATE",
-                                    "VENDOR_NAME": "Staples, Inc",
-                                    "VENDOR_NUM": 10002,
-                                    "VENDOR_SITE_CODE": "BURLINGTON-MA-S",
-                                    "PAYMENT_TERMS": "Net 30",
-                                    "ORIGINATOR_ROLE": "BUYER",
-                                    "ACCEPTANCE_REQUIRED_FLAG": "N",
-                                    "ERROR_FLAG": "E",
-                                    "ERROR_MESSAGE": "Given PO Currency Code does not exist: USD.Given PO Supplier is not exist:Staples, Inc.Given PO Supplier Site is not exist:BURLINGTON-MA-S.",
-                                    "ERROR_MSG": 
-                                    [
-                                        {
-                                        "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                                        "COL": "CURRENCY_CODE",
-                                        "KEY_DATA": "USD",
-                                        "PAYLOAD": "mistake",
-                                        "RW": "AAAeO3AAGAAAAQsAAA"
-                                        },
-                                        {
-                                        "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                                        "COL": "VENDOR_NAME",
-                                        "KEY_DATA": "Staples, Inc",
-                                        "PAYLOAD": "failure",
-                                        "RW": "AAAeO3AAGAAAAQsAAA"
-                                        },
-                                        {
-                                        "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                                        "COL": "VENDOR_SITE_CODE",
-                                        "KEY_DATA": "BURLINGTON-MA-S",
-                                        "PAYLOAD": "sorry",
-                                        "RW": "AAAeO3AAGAAAAQsAAA"
-                                        }
-                                    ]
-                                },
-                            {
-                                "INTERFACE_HEADER_KEY": "PO 3",
-                                "ACTION": "ORIGINAL",
-                                "BATCH_ID": 1386,
-                                "DOCUMENT_TYPE_CODE": "STANDARD",
-                                "PRC_BU_NAME": "Corporate",
-                                "REQ_BU_NAME": "Corporate",
-                                "SOLDTO_LE_NAME": "KBACE Technologies, Inc.",
-                                "BILLTO_BU_NAME": "Corporate",
-                                "AGENT_NAME": "Presenter",
-                                "CURRENCY_CODE": "USD",
-                                "COMMENTS": "New Standard Purchase Order",
-                                "BILL_TO_LOCATION": "CORPORATE",
-                                "SHIP_TO_LOCATION": "CORPORATE",
-                                "VENDOR_NAME": "Office Depot",
-                                "VENDOR_NUM": 10006,
-                                "VENDOR_SITE_CODE": "NASHUA",
-                                "PAYMENT_TERMS": "Net 30",
-                                "ORIGINATOR_ROLE": "BUYER",
-                                "ACCEPTANCE_REQUIRED_FLAG": "N",
-                                "ERROR_FLAG": "E",
-                                "ERROR_MESSAGE": "Given PO Currency Code does not exist: USD.Given PO Supplier Site is not exist:NASHUA.",
-                                "ERROR_MSG": 
-                                [
-                                    {
-                                    "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                                    "COL": "CURRENCY_CODE",
-                                    "KEY_DATA": "USD",
-                                    "PAYLOAD": "no",
-                                    "RW": "AAAeO3AAGAAAAQsAAB"
-                                    },
-                                    {
-                                    "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                                    "COL": "VENDOR_SITE_CODE",
-                                    "KEY_DATA": "NASHUA",
-                                    "PAYLOAD": "not good",
-                                    "RW": "AAAeO3AAGAAAAQsAAB"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            },
-        {
-        "name": "FCU_PO_LINES_INTERFACE",
-        "results": {
-        "columns": [
-          {
-            "column_name": "CREATION_DATE",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ERROR_MESSAGE",
-            "data_type": "VARCHAR2",
-            "data_length": 4000
-          },
-          {
-            "column_name": "ERROR_FLAG",
-            "data_type": "VARCHAR2",
-            "data_length": 1
-          },
-          {
-            "column_name": "THIRD_PTY_REG_NUM",
-            "data_type": "VARCHAR2",
-            "data_length": 50
-          },
-          {
-            "column_name": "FIRST_PTY_REG_NUM",
-            "data_type": "VARCHAR2",
-            "data_length": 50
-          },
-          {
-            "column_name": "SERVICE_LEVEL",
-            "data_type": "VARCHAR2",
-            "data_length": 80
-          },
-          {
-            "column_name": "MODE_OF_TRANSPORT",
-            "data_type": "VARCHAR2",
-            "data_length": 80
-          },
-          {
-            "column_name": "AGENT_EMAIL_ADDRESS",
-            "data_type": "VARCHAR2",
-            "data_length": 960
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP10",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP9",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP8",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP7",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP6",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP5",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP4",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP3",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP2",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_TIMESTAMP1",
-            "data_type": "TIMESTAMP(6)",
-            "data_length": 11
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER10",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER9",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER8",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER7",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER6",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER5",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER4",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER3",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER2",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_NUMBER1",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE10",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE9",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE8",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE7",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE6",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE5",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE4",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE3",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE2",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE_DATE1",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ATTRIBUTE20",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE19",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE18",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE17",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE16",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE15",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE14",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE13",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE12",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE11",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE10",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE9",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE8",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE7",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE6",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE5",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE4",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE3",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-         },
-          {
-            "column_name": "ATTRIBUTE2",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE1",
-            "data_type": "VARCHAR2",
-            "data_length": 600
-          },
-          {
-            "column_name": "ATTRIBUTE_CATEGORY",
-            "data_type": "VARCHAR2",
-            "data_length": 120
-          },
-          {
-            "column_name": "TAX_DOCUMENT_SUBTYPE",
-            "data_type": "VARCHAR2",
-            "data_length": 960
-          },
-          {
-            "column_name": "DEFAULT_TAXATION_COUNTRY",
-            "data_type": "VARCHAR2",
-            "data_length": 8
-          },
-          {
-            "column_name": "NOTE_TO_RECEIVER",
-            "data_type": "VARCHAR2",
-            "data_length": 4000
-          },
-          {
-            "column_name": "NOTE_TO_VENDOR",
-            "data_type": "VARCHAR2",
-            "data_length": 4000
-          },
-          {
-            "column_name": "CONFIRMING_ORDER_FLAG",
-            "data_type": "VARCHAR2",
-            "data_length": 4
-          },
-          {
-            "column_name": "EMAIL_ADDRESS",
-            "data_type": "VARCHAR2",
-            "data_length": 4000
-          },
-          {
-            "column_name": "FAX",
-            "data_type": "VARCHAR2",
-            "data_length": 240
-          },
-          {
-            "column_name": "SUPPLIER_NOTIF_METHOD",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "ACCEPTANCE_WITHIN_DAYS",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "ACCEPTANCE_REQUIRED_FLAG",
-            "data_type": "VARCHAR2",
-            "data_length": 4
-          },
-          {
-            "column_name": "CHANGE_ORDER_DESC",
-            "data_type": "VARCHAR2",
-            "data_length": 4000
-          },
-          {
-            "column_name": "ORIGINATOR_ROLE",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "PAYMENT_TERMS",
-            "data_type": "VARCHAR2",
-            "data_length": 200
-          },
-          {
-            "column_name": "PAY_ON_CODE",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "FREIGHT_TERMS",
-            "data_type": "VARCHAR2",
-            "data_length": 120
-          },
-          {
-            "column_name": "FREIGHT_CARRIER",
-            "data_type": "VARCHAR2",
-            "data_length": 1440
-          },
-          {
-            "column_name": "FOB",
-            "data_type": "VARCHAR2",
-            "data_length": 120
-          },
-          {
-            "column_name": "VENDOR_DOC_NUM",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "VENDOR_CONTACT",
-            "data_type": "VARCHAR2",
-            "data_length": 1440
-          },
-          {
-            "column_name": "VENDOR_SITE_CODE",
-            "data_type": "VARCHAR2",
-            "data_length": 60
-          },
-          {
-            "column_name": "VENDOR_NUM",
-            "data_type": "VARCHAR2",
-            "data_length": 120
-          },
-          {
-            "column_name": "VENDOR_NAME",
-            "data_type": "VARCHAR2",
-            "data_length": 1440
-          },
-          {
-            "column_name": "SHIP_TO_LOCATION",
-            "data_type": "VARCHAR2",
-            "data_length": 240
-          },
-          {
-            "column_name": "BILL_TO_LOCATION",
-            "data_type": "VARCHAR2",
-            "data_length": 240
-         },
-          {
-            "column_name": "COMMENTS",
-            "data_type": "VARCHAR2",
-            "data_length": 960
-          },
-          {
-            "column_name": "RATE_DATE",
-            "data_type": "DATE",
-            "data_length": 7
-          },
-          {
-            "column_name": "RATE_TYPE",
-            "data_type": "VARCHAR2",
-            "data_length": 120
-          },
-          {
-            "column_name": "RATE",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "CURRENCY_CODE",
-            "data_type": "VARCHAR2",
-            "data_length": 60
-          },
-          {
-            "column_name": "AGENT_NAME",
-            "data_type": "VARCHAR2",
-            "data_length": 4000
-          },
-          {
-            "column_name": "BILLTO_BU_NAME",
-            "data_type": "VARCHAR2",
-            "data_length": 240
-          },
-          {
-            "column_name": "SOLDTO_LE_NAME",
-            "data_type": "VARCHAR2",
-            "data_length": 960
-          },
-          {
-            "column_name": "REQ_BU_NAME",
-            "data_type": "VARCHAR2",
-            "data_length": 960
-          },
-          {
-            "column_name": "PRC_BU_NAME",
-            "data_type": "VARCHAR2",
-            "data_length": 960
-          },
-          {
-            "column_name": "STYLE_DISPLAY_NAME",
-            "data_type": "VARCHAR2",
-            "data_length": 960
-          },
-          {
-            "column_name": "DOCUMENT_TYPE_CODE",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "DOCUMENT_NUM",
-            "data_type": "VARCHAR2",
-            "data_length": 80
-          },
-          {
-            "column_name": "APPROVAL_ACTION",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "INTERFACE_SOURCE_CODE",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "BATCH_ID",
-            "data_type": "NUMBER",
-            "data_length": 22
-          },
-          {
-            "column_name": "ACTION",
-            "data_type": "VARCHAR2",
-            "data_length": 100
-          },
-          {
-            "column_name": "INTERFACE_HEADER_KEY",
-            "data_type": "VARCHAR2",
-            "data_length": 200
-          }
-        ],
-        "rows": {
-          "array": [
-            {
-              "INTERFACE_HEADER_KEY": "PO 2",
-              "ACTION": "ORIGINAL",
-              "BATCH_ID": 1386,
-              "DOCUMENT_TYPE_CODE": "STANDARD",
-              "PRC_BU_NAME": "Corporate",
-              "REQ_BU_NAME": "Corporate",
-              "SOLDTO_LE_NAME": "KBACE Technologies, Inc.",
-              "BILLTO_BU_NAME": "Corporate",
-              "AGENT_NAME": "Presenter",
-              "CURRENCY_CODE": "USD",
-              "COMMENTS": "New Standard Purchase Order",
-              "BILL_TO_LOCATION": "CORPORATE",
-              "SHIP_TO_LOCATION": "CORPORATE",
-              "VENDOR_NAME": "Staples, Inc",
-              "VENDOR_NUM": 10002,
-              "VENDOR_SITE_CODE": "BURLINGTON-MA-S",
-              "PAYMENT_TERMS": "Net 30",
-              "ORIGINATOR_ROLE": "BUYER",
-              "ACCEPTANCE_REQUIRED_FLAG": "N",
-              "ERROR_FLAG": "E",
-              "ERROR_MESSAGE": "Given PO Currency Code does not exist: USD.Given PO Supplier is not exist:Staples, Inc.Given PO Supplier Site is not exist:BURLINGTON-MA-S.",
-              "ERROR_MSG": [
-                {
-                  "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                  "COL": "CURRENCY_CODE",
-                  "KEY_DATA": "USD",
-                  "PAYLOAD": "mistake",
-                  "RW": "AAAeO3AAGAAAAQsAAA"
-                },
-                {
-                  "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                  "COL": "VENDOR_NAME",
-                  "KEY_DATA": "Staples, Inc",
-                  "PAYLOAD": "failure",
-                  "RW": "AAAeO3AAGAAAAQsAAA"
-                },
-                {
-                  "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                  "COL": "VENDOR_SITE_CODE",
-                  "KEY_DATA": "BURLINGTON-MA-S",
-                  "PAYLOAD": "sorry",
-                  "RW": "AAAeO3AAGAAAAQsAAA"
-                }
-              ]
+                "choice": "Swift",
+                "votes": 2048
             },
             {
-              "INTERFACE_HEADER_KEY": "PO 3",
-              "ACTION": "ORIGINAL",
-              "BATCH_ID": 1386,
-              "DOCUMENT_TYPE_CODE": "STANDARD",
-              "PRC_BU_NAME": "Corporate",
-              "REQ_BU_NAME": "Corporate",
-              "SOLDTO_LE_NAME": "KBACE Technologies, Inc.",
-              "BILLTO_BU_NAME": "Corporate",
-              "AGENT_NAME": "Presenter",
-              "CURRENCY_CODE": "USD",
-              "COMMENTS": "New Standard Purchase Order",
-              "BILL_TO_LOCATION": "CORPORATE",
-              "SHIP_TO_LOCATION": "CORPORATE",
-              "VENDOR_NAME": "Office Depot",
-              "VENDOR_NUM": 10006,
-              "VENDOR_SITE_CODE": "NASHUA",
-              "PAYMENT_TERMS": "Net 30",
-              "ORIGINATOR_ROLE": "BUYER",
-              "ACCEPTANCE_REQUIRED_FLAG": "N",
-              "ERROR_FLAG": "E",
-              "ERROR_MESSAGE": "Given PO Currency Code does not exist: USD.Given PO Supplier Site is not exist:NASHUA.",
-              "ERROR_MSG": [
+                "choice": "Python",
+                "votes": 1024
+            },
+            {
+                "choice": "Objective-C",
+                "votes": 512
+            },
+            {
+                "choice": "Ruby",
+                "votes": 256
+            }]
+        }]
+
+## Conversion Request by Key[/request/{requestId}]
+
+### List specific Conversion request[GET]
+
++Response 200(application / json)
+
+        {
+            "request":
+            {
+                "requestId": 681,
+                "creationDate": "2017-01-25",
+                "createdBy": "admin-default",
+                "lastUpdateDate": "2017-01-25",
+                "lastUpdatedBy": "admin-default",
+                "lastUpdateLogin": -1,
+                "status": "RUNNING",
+                "batchId": "20170125122345",
+                "propertyFile": "test_win_properties.json",
+                "errorFile": null,
+                "propertyFileContent": "",
+                "useBatchId": null,
+                "usePropBatchId": null,
+                "copyCat": null,
+                "deleteCat": null,
+                "runSIP": null,
+                "sourceSys": null,
+                "instType": "DEV",
+                "entityRows": [
                 {
-                  "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                  "COL": "CURRENCY_CODE",
-                  "KEY_DATA": "USD",
-                  "PAYLOAD": "no",
-                  "RW": "AAAeO3AAGAAAAQsAAB"
+                    "requestEntityId": 381,
+                    "requestId": 681,
+                    "entityShortName": "PUOR",
+                    "operationType": "VAL",
+                    "status": null,
+                    "batchId": "20170125122345",
+                    "copyCat": "N",
+                    "deleteCat": "N",
+                    "useBatchId": "20170124055938",
+                    "runSIP": "N",
+                    "entityFile": "PoImportOrders.zip",
+                    "errorFile": "PoImportOrders.zip"
+                }],
+                "batchDataLogs": null
+            }
+        }
+
+##Conversion Request Batch by Key[/request/batch/{batchId}]
+
+### List specific Conversion batch for a request[GET]
+
++Response 200(application / json)
+
+        [
+        {
+            "question": "Favourite programming language?",
+            "published_at": "2015-08-05T08:40:51.620Z",
+            "choices": [
+            {
+                "choice": "Swift",
+                "votes": 2048
+            },
+            {
+                "choice": "Python",
+                "votes": 1024
+            },
+            {
+                "choice": "Objective-C",
+                "votes": 512
+            },
+            {
+                "choice": "Ruby",
+                "votes": 256
+            }]
+        }]
+
+## Conversion Batch by Key[/batch/{batchId}]
+
+### List specific Conversion batch[GET]
+
++Response 200(application / json)
+
+        [
+        {
+            "question": "Favourite programming language?",
+            "published_at": "2015-08-05T08:40:51.620Z",
+            "choices": [
+            {
+                "choice": "Swift",
+                "votes": 2048
+            },
+            {
+                "choice": "Python",
+                "votes": 1024
+            },
+            {
+                "choice": "Objective-C",
+                "votes": 512
+            },
+            {
+                "choice": "Ruby",
+                "votes": 256
+            }]
+        }]
+
+## Conversion Creation[/requests]
+
+### Submit a New Conversion[POST]
+
+You may create your own question using this action.It takes a JSON object containing a question and a collection of answers in the form of choices.
+
++Request(application / json)
+
+            {
+                "question": "Favourite programming language?",
+                "choices": [
+                    "Swift",
+                    "Python",
+                    "Objective-C",
+                    "Ruby"
+                ]
+            }
+
++Response 201(application/json)
++Headers  Location: /questions/2
+
++Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 0
                 },
                 {
-                  "ENTITY": "FCU_PO_HEADERS_INTERFACE",
-                  "COL": "VENDOR_SITE_CODE",
-                  "KEY_DATA": "NASHUA",
-                  "PAYLOAD": "not good",
-                  "RW": "AAAeO3AAGAAAAQsAAB"
-                }
-              ]
+                    "choice": "Python",
+                    "votes": 0
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 0
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 0
+                }]
             }
-          ]
-        }
-        }
-        }
-        ]
-        }
+
+
+#Group Validations
+
+## Conversion Validation by Key[/validation/{validationId}]
+
+### List specific Conversion Validation[GET]
+
++Response 200(application/json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }]
+            }]
+
+
+
+## Entity Validatons Collection[/validation/{entityId}]
+
+### List All Validations for an Entity[GET]
+
++Response 200(application / json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }]
+            }]
+
+
+## Conversion Validation result by Entity Key[/validation/result/{entityId}]
+
+### List specific Conversion Validation result for an Entity[GET]
+
++Response 200(application / json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }]
+            }]
+
+
+#Group Reports
+## Conversions Status Report[/report/conversion / status]
+
+### List All Conversion requests status count[GET]
+
+            +
+            Response 200(application / json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }]
+            }]
+
+## Conversions Status Report[/report/conversion / entity / count]
+
+### List All Conversion requests entity count[GET]
+
+            +Response 200(application / json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }]
+            }]
+
+
+## Conversions Status Report[/report/conversion/customer/count]
+
+### List All Conversion requests customer count[GET]
+
+            +Response 200(application / json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }]
+            }]
