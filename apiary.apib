@@ -1,5 +1,5 @@
-FORMAT:1A
-HOST:http://atgsoa12.kbace.com:7001/chub/data/resources/service/
+FORMAT: 1A
+HOST: http://atgsoa12.kbace.com:7001/chub/data/resources/service/
 
 # CHUB
 
@@ -8,20 +8,19 @@ CHUB REST API provides access to Cloud Central Conversions (ERP only).
 # Group Requests
 
 ## Conversions Collection [/request{?limit}]
-
 + Parameters
     + limit (number, optional) - The maximum number of results to return.
         + Default: '200'
-        
+
 ### List All Conversion requests [GET]
 
 + Response 200 (application/json)
-    [
+
+        [
         {
             "question": "Favourite programming language?",
             "published_at": "2015-08-05T08:40:51.620Z",
-            "choices": 
-            [
+            "choices": [
             {
                 "choice": "Swift",
                 "votes": 2048
@@ -40,13 +39,12 @@ CHUB REST API provides access to Cloud Central Conversions (ERP only).
             }
             ]
         }
-    ]
+        ]
 
 
 ### Submit a New Conversion request [POST]
-
 You may create your own question using this action.It takes a JSON object containing a question and a collection of answers in the form of choices.
-
+    
 + Request (application/json)
 
             {
@@ -90,19 +88,18 @@ You may create your own question using this action.It takes a JSON object contai
 
 ## Conversion Request Batch by Key [/request/batch/{batchId}]
 
-+ Parameters
-    + batchId: 1 (number)
+        + Parameters
+            + batchId: 1 (number)
     
 ### List specific Conversion batch for a request [GET]
 
 + Response 200 (application/json)
 
-    [
+        [
         {
             "question": "Favourite programming language?",
             "published_at": "2015-08-05T08:40:51.620Z",
-            "choices": 
-            [
+            "choices": [
             {
                 "choice": "Swift",
                 "votes": 2048
@@ -121,14 +118,14 @@ You may create your own question using this action.It takes a JSON object contai
             }
             ]
         }
-    ]
-    
-    
+        ]
+
+
 ## Conversion Request by Key [/request/{requestId}]
-+ Parameters
-    + requestId: 1 (number)
-    
-### List specific Conversion request [GET]
+        + Parameters
+            + requestId: 1 (number)
+
+### List specific Conversion request[GET]
 
 + Response 200 (application/json)
 
@@ -178,7 +175,7 @@ You may create your own question using this action.It takes a JSON object contai
 ## Conversion Batch by Key [/batch/{batchId}]
 + Parameters
     + batchId: 1 (number)
-    
+
 ### List specific Conversion batch [GET]
 
 + Response 200 (application/json)
@@ -378,7 +375,9 @@ You may create your own question using this action.It takes a JSON object contai
 
 
 ## Conversion Validation result by Entity Key [/validation/result/{entityId}]
-
++ Parameters
+    + entityId: 1 (number)
+    
 ### List specific Conversion Validation result for an Entity [GET]
 
 + Response 200 (application/json)
@@ -409,6 +408,9 @@ You may create your own question using this action.It takes a JSON object contai
 
 ## Conversion Validation Run result by Batch Key [/validation/run/{batchId}]
 
++ Parameters
+    + batchId: 1 (number)
+    
 ### List specific Conversion Validation run result for a batch [GET]
 
 + Response 200 (application/json)
