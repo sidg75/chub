@@ -3,45 +3,105 @@ HOST: http://atgsoa12.kbace.com:7001/chub/data/resources/service/
 
 # CHUB
 
-CHUB REST API provides access to Cloud Central Conversions (ERP only).
+CHUB REST API provides access to Cloud Central Conversions data and processes.
 
-# Group Requests
+Conversion 
+[[ (Request) >> (Batch) >> (Validation runs) ]] >> Reports
 
-## Conversions Collection [/request{?limit}]
+# Group Request
+
+## Conversion Requests Collection [/request{?limit}]
 + Parameters
     + limit (number, optional) - The maximum number of results to return.
         + Default: '200'
 
 ### List All Conversion requests [GET]
-
 + Response 200 (application/json)
 
+        {
+        "requests":
         [
         {
-            "question": "Favourite programming language?",
-            "published_at": "2015-08-05T08:40:51.620Z",
-            "choices": [
-            {
-                "choice": "Swift",
-                "votes": 2048
-            },
-            {
-                "choice": "Python",
-                "votes": 1024
-            },
-            {
-                "choice": "Objective-C",
-                "votes": 512
-            },
-            {
-                "choice": "Ruby",
-                "votes": 256
-            }
-            ]
+        "requestId" : 1121,
+        "creationDate" : "2017-03-04",
+        "createdBy" : "admin-default",
+        "lastUpdateDate" : "2017-03-04",
+        "lastUpdatedBy" : "admin-default",
+        "lastUpdateLogin" : -1,
+        "status" : "RUNNING",
+        "batchId" : "20170304142536",
+        "propertyFile" : "estes_unix_properties.json",
+        "errorFile" : null,
+        "propertyFileContent" : "",
+        "useBatchId" : null,
+        "usePropBatchId" : null,
+        "copyCat" : null,
+        "deleteCat" : null,
+        "runSIP" : null,
+        "sourceSys" : null,
+        "instType" : "DEV",
+        "module" : "ERP",
+        "entityRows" : 
+        [ 
+        {
+            "requestEntityId" : 821,
+            "requestId" : 1121,
+            "entityShortName" : "SUPL_HEAD",
+            "operationType" : "VAL",
+            "status" : null,
+            "batchId" : "20170304142536",
+            "copyCat" : "N",
+            "deleteCat" : "N",
+            "useBatchId" : "20170303034437",
+            "runSIP" : "N",
+            "entityFile" : "PozSuppliersInt.zip",
+            "errorFile" : "PozSuppliersInt.zip"
+        } 
+        ],
+        "batchDataLogs" : null
+        },
+        {
+        "requestId" : 1103,
+        "creationDate" : "2017-03-03",
+        "createdBy" : "admin-default",
+        "lastUpdateDate" : "2017-03-03",
+        "lastUpdatedBy" : "admin-default",
+        "lastUpdateLogin" : -1,
+        "status" : "RUNNING",
+        "batchId" : "20170303041138",
+        "propertyFile" : "estes_unix_properties.json",
+        "errorFile" : null,
+        "propertyFileContent" : "",
+        "useBatchId" : null,
+        "usePropBatchId" : null,
+        "copyCat" : null,
+        "deleteCat" : null,
+        "runSIP" : null,
+        "sourceSys" : null,
+        "instType" : "DEV",
+        "module" : "ERP",
+        "entityRows" : 
+        [ 
+        {
+            "requestEntityId" : 803,
+            "requestId" : 1103,
+            "entityShortName" : "SUPL_HEAD",
+            "operationType" : "VAL",
+            "status" : null,
+            "batchId" : "20170303041138",
+            "copyCat" : "N",
+            "deleteCat" : "N",
+            "useBatchId" : "20170303034437",
+            "runSIP" : "N",
+            "entityFile" : "PozSuppliersInt.zip",
+            "errorFile" : "PozSuppliersInt.zip"
+        } 
+        ],
+        "batchDataLogs" : null
         }
         ]
-
-
+        }
+        
 ### Submit a New Conversion request [POST]
 You may create your own question using this action.It takes a JSON object containing a question and a collection of answers in the form of choices.
     
@@ -86,39 +146,7 @@ You may create your own question using this action.It takes a JSON object contai
             }
  
 
-## Conversion Request Batch by Key [/request/batch/{batchId}]
 
-+ Parameters
-    + batchId: 1 (number)
-    
-### List specific Conversion batch for a request [GET]
-
-+ Response 200 (application/json)
-
-        [
-        {
-            "question": "Favourite programming language?",
-            "published_at": "2015-08-05T08:40:51.620Z",
-            "choices": [
-            {
-                "choice": "Swift",
-                "votes": 2048
-            },
-            {
-                "choice": "Python",
-                "votes": 1024
-            },
-            {
-                "choice": "Objective-C",
-                "votes": 512
-            },
-            {
-                "choice": "Ruby",
-                "votes": 256
-            }
-            ]
-        }
-        ]
 
 
 ## Conversion Request by Key [/request/{requestId}]
@@ -130,287 +158,147 @@ You may create your own question using this action.It takes a JSON object contai
 + Response 200 (application/json)
 
         {
-            "request":
-            {
-                "requestId": 681,
-                "creationDate": "2017-01-25",
-                "createdBy": "admin-default",
-                "lastUpdateDate": "2017-01-25",
-                "lastUpdatedBy": "admin-default",
-                "lastUpdateLogin": -1,
-                "status": "RUNNING",
-                "batchId": "20170125122345",
-                "propertyFile": "test_win_properties.json",
-                "errorFile": null,
-                "propertyFileContent": "",
-                "useBatchId": null,
-                "usePropBatchId": null,
-                "copyCat": null,
-                "deleteCat": null,
-                "runSIP": null,
-                "sourceSys": null,
-                "instType": "DEV",
-                "entityRows": 
-                [
-                {
-                    "requestEntityId": 381,
-                    "requestId": 681,
-                    "entityShortName": "PUOR",
-                    "operationType": "VAL",
-                    "status": null,
-                    "batchId": "20170125122345",
-                    "copyCat": "N",
-                    "deleteCat": "N",
-                    "useBatchId": "20170124055938",
-                    "runSIP": "N",
-                    "entityFile": "PoImportOrders.zip",
-                    "errorFile": "PoImportOrders.zip"
-                }
-                ],
-                "batchDataLogs": null
-            }
-        }
-
-
-## Conversion Batch by Key [/batch/{batchId}]
-+ Parameters
-    + batchId: 1 (number)
-
-### List specific Conversion batch [GET]
-
-+ Response 200 (application/json)
-
-        [
+        "request" :
         {
-            "question": "Favourite programming language?",
-            "published_at": "2015-08-05T08:40:51.620Z",
-            "choices": [
-            {
-                "choice": "Swift",
-                "votes": 2048
-            },
-            {
-                "choice": "Python",
-                "votes": 1024
-            },
-            {
-                "choice": "Objective-C",
-                "votes": 512
-            },
-            {
-                "choice": "Ruby",
-                "votes": 256
-            }
-            ]
+        "requestId" : 1121,
+        "creationDate" : "2017-03-04",
+        "createdBy" : "admin-default",
+        "lastUpdateDate" : "2017-03-04",
+        "lastUpdatedBy" : "admin-default",
+        "lastUpdateLogin" : -1,
+        "status" : "RUNNING",
+        "batchId" : "20170304142536",
+        "propertyFile" : "estes_unix_properties.json",
+        "errorFile" : null,
+        "propertyFileContent" : "",
+        "useBatchId" : null,
+        "usePropBatchId" : null,
+        "copyCat" : null,
+        "deleteCat" : null,
+        "runSIP" : null,
+        "sourceSys" : null,
+        "instType" : "DEV",
+        "module" : "ERP",
+        "entityRows" : 
+        [ 
+        {
+            "requestEntityId" : 821,
+            "requestId" : 1121,
+            "entityShortName" : "SUPL_HEAD",
+            "operationType" : "VAL",
+            "status" : null,
+            "batchId" : "20170304142536",
+            "copyCat" : "N",
+            "deleteCat" : "N",
+            "useBatchId" : "20170303034437",
+            "runSIP" : "N",
+            "entityFile" : "PozSuppliersInt.zip",
+            "errorFile" : "PozSuppliersInt.zip"
         }
-        ]
+        ],
+        "batchDataLogs" : null
+        }
+        }
 
 
-# Group Reports
 
-## Conversions Status Report [/report/conversion/status]
-        
-### List All Conversion requests status count [GET]
-        
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-        ]
-
-## Conversions Entity Count Report [/report/conversion/entity/count]
-
-### List All Conversion requests entity count [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-        ]
-            
-## Conversions Customer Count Report [/report/conversion/customer/count]
-
-### List All Conversion requests customer count [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-        ]
         
 
-# Group Validations
+# Group Batch
 
-## Conversion Validation by Key [/validation/{validationId}]
-+ Parameters
-    + validationId: 1 (number)
-    
-### List specific Conversion Validation [GET]
-
-+ Response 200 (application/json)
-
-            [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-            ]
-
-
-## Entity Validatons Collection [/validation/{entityId}]
-
-+ Parameters
-    + entityId: 1 (number) - An unique identifier.
-    
-    
-### List All Validations for an Entity [GET]
-
-+ Response 200 (application/json)
-
-            [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }
-                ]
-            }
-            ]
-
-
-## Conversion Validation result by Entity Key [/validation/result/{entityId}]
-+ Parameters
-    + entityId: 1 (number)
-    
-### List specific Conversion Validation result for an Entity [GET]
-
-+ Response 200 (application/json)
-
-            [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                {
-                    "choice": "Swift",
-                    "votes": 2048
-                },
-                {
-                    "choice": "Python",
-                    "votes": 1024
-                },
-                {
-                    "choice": "Objective-C",
-                    "votes": 512
-                },
-                {
-                    "choice": "Ruby",
-                    "votes": 256
-                }]
-            }
-            ]
-
-## Conversion Validation Run result by Batch Key [/validation/run/{batchId}]
+## Conversion Request Batch by Key [/request/batch/{batchId}]
 
 + Parameters
     + batchId: 1 (number)
     
+### List specific Conversion batch for a request [GET]
+
++ Response 200 (application/json)
+
+        "logdata" : 
+        {
+            "requestId" : 1101,
+            "creationDate" : "2017-03-03",
+            "createdBy" : "admin-default",
+            "lastUpdateDate" : "2017-03-03",
+            "lastUpdatedBy" : "admin-default",
+            "lastUpdateLogin" : -1,
+            "status" : "RUNNING",
+            "batchId" : "20170303034437",
+            "propertyFile" : "estes_unix_properties.json",
+            "errorFile" : null,
+            "propertyFileContent" : "",
+            "useBatchId" : null,
+            "usePropBatchId" : null,
+            "copyCat" : null,
+            "deleteCat" : null,
+            "runSIP" : null,
+            "sourceSys" : null,
+            "instType" : "DEV",
+            "module" : "ERP",
+            "entityRows" : 
+            [ 
+            {
+                "requestEntityId" : 801,
+                "requestId" : 1101,
+                "entityShortName" : "SUPL_HEAD",
+                "operationType" : "EXT",
+                "status" : null,
+                "batchId" : "20170303034437",
+                "copyCat" : "N",
+                "deleteCat" : "N",
+                "useBatchId" : null,
+                "runSIP" : "N",
+                "entityFile" : null,
+                "errorFile" : null
+            }
+            ],
+            "batchDataLogs" : 
+            [ 
+            {
+                "messageId" : 199280,
+                "entity" : null,
+                "entityKey" : "ConversionORCLDAO",
+                "message" : "Request received by the REST service (/batch/{batchId}), for batchId 20170303035003",
+                "keyData" : null,
+                "createdBy" : "admin-default",
+                "requestId" : null,
+                "batchId" : "20170303034437",
+                "payload" : null,
+                "status" : null,
+                "msgSource" : "JCS",
+                "operation" : "GET@{batch/batchId}",
+                "msgType" : null,
+                "msgLevel" : "INFO",
+                "creationDate" : "2017-03-03T17:35:59-05"
+            },
+            {
+                "messageId" : 199265,
+                "entity" : null,
+                "entityKey" : "ConversionORCLDAO",
+                "message" : "Request received by the REST service (/requests), for all requests",
+                "keyData" : null,
+                "createdBy" : "admin-default",
+                "requestId" : null,
+                "batchId" : "20170303034437",
+                "payload" : null,
+                "status" : null,
+                "msgSource" : "JCS",
+                "operation" : "GET@{request}",
+                "msgType" : null,
+                "msgLevel" : "INFO",
+                "creationDate" : "2017-03-03T17:07:01-05"
+            }
+            ]
+        }
+        
+
+## Conversion Validation Run result by Batch Key [/request/batch/{batchId}/validation/{entityId}]
+
++ Parameters
+    + batchId: 1 (number)
+    + entityId: 1 (number)
+
 ### List specific Conversion Validation run result for a batch [GET]
 
 + Response 200 (application/json)
@@ -1623,5 +1511,336 @@ You may create your own question using this action.It takes a JSON object contai
                         }
                     }
                 }
+                
+            
+        
+# Group Validation
+
+## Conversion Validation by Key [/validation/{validationId}]
++ Parameters
+    + validationId: 1 (number)
+    
+### List specific Conversion Validation [GET]
+
++ Response 200 (application/json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }
+                ]
+            }
+            ]
+
+
+## Entity Validatons Collection [/validation/{entityId}]
+
++ Parameters
+    + entityId: 1 (number) - An unique identifier.
+    
+    
+### List All Validations for an Entity [GET]
+
++ Response 200 (application/json)
+
+            [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }
+                ]
+            }
+            ]
+
+
+
+
+# Group Report
+
+## Conversions Request Status [/report/request/monthstatus]
+        
+### List All Conversion requests status [GET]
+        
++ Response 200 (application/json)
+
+        [
+            {
+        "requestReport" : 
+        [
+        {
+            "month" : "FEB",
+            "status" : "RUNNING",
+            "count" : 33
+        },
+        {
+            "month" : "FEB",
+            "status" : "FAILED",
+            "count" : 7
+        },
+        {
+            "month" : "FEB",
+            "status" : "SUCCESS",
+            "count" : 2
+        },
+        {
+            "month" : "MAR",
+            "status" : "FAILED",
+            "count" : 3
+        },
+        {
+            "month" : "MAR",
+            "status" : "RUNNING",
+            "count" : 17
+        },
+        {
+            "month" : "MAR",
+            "status" : "SUCCESS",
+            "count" : 7
+        },
+        {
+            "month" : "JUN",
+            "status" : "SUCCESS",
+            "count" : 1
+        },
+        {
+            "month" : "JUL",
+            "status" : "RUNNING",
+            "count" : 1
+        }
+        ]
+        }
+        ]
+
+## Conversions Entity Status [/report/entity/monthstatus]
+        
+### List All Conversion Entities status [GET]
+        
++ Response 200 (application/json)
+
+        [
+            {
+            "entityReport" : [ {
+            "entityName" : "GNLD",
+            "status" : "FAILED",
+            "count" : 3
+            }, {
+            "entityName" : "GNLD",
+            "status" : null,
+            "count" : 23
+            }, {
+            "entityName" : "PUOR",
+            "status" : "FAILED",
+            "count" : 6
+            }, {
+            "entityName" : "PUOR",
+            "status" : "SUCCESS",
+            "count" : 1
+            }, {
+            "entityName" : "PUOR",
+            "status" : null,
+            "count" : 3
+            }, {
+            "entityName" : "SUPL_ADDR",
+            "status" : "SUCCESS",
+            "count" : 2
+            }, {
+            "entityName" : "SUPL_ADDR",
+            "status" : null,
+            "count" : 15
+            }, {
+            "entityName" : "SUPL_HEAD",
+            "status" : "SUCCESS",
+            "count" : 2
+            }, {
+            "entityName" : "SUPL_HEAD",
+            "status" : null,
+            "count" : 14
+            }, {
+            "entityName" : "SUPL_SITE",
+            "status" : "SUCCESS",
+            "count" : 1
+            }, {
+            "entityName" : "SUPL_SITE",
+            "status" : null,
+            "count" : 2
+            } ]
+            }
+        ]
+
+## Conversions Customer Status [/report/customer/monthstatus]
+        
+### List All Conversion Customers status [GET]
+        
++ Response 200 (application/json)
+
+        [
+            {
+            "customerReport" : [ {
+            "customerId" : "Estes",
+            "entityName" : "GNLD",
+            "status" : "FAILED",
+            "count" : 2
+            }, {
+            "customerId" : "Estes",
+            "entityName" : "GNLD",
+            "status" : "SUCCESS",
+            "count" : 1
+            }, {
+            "customerId" : "Estes",
+            "entityName" : "SUPL_ADDR",
+            "status" : "RUNNING",
+            "count" : 4
+            }, {
+            "customerId" : "Estes",
+            "entityName" : "SUPL_HEAD",
+            "status" : "RUNNING",
+            "count" : 1
+            }, {
+            "customerId" : "Estes",
+            "entityName" : "SUPL_HEAD",
+            "status" : "SUCCESS",
+            "count" : 2
+            }, {
+            "customerId" : "Estes",
+            "entityName" : "SUPL_SITE",
+            "status" : "SUCCESS",
+            "count" : 1
+            }, {
+            "customerId" : "SuperValu",
+            "entityName" : "GNLD",
+            "status" : "RUNNING",
+            "count" : 1
+            }, {
+            "customerId" : "SuperValu",
+            "entityName" : "PUOR",
+            "status" : "FAILED",
+            "count" : 2
+            }, {
+            "customerId" : "SuperValu",
+            "entityName" : "PUOR",
+            "status" : "RUNNING",
+            "count" : 3
+            }, {
+            "customerId" : "SuperValu",
+            "entityName" : "SUPL_HEAD",
+            "status" : "RUNNING",
+            "count" : 1
+            }, {
+            "customerId" : "SuperValu",
+            "entityName" : "SUPL_HEAD",
+            "status" : "SUCCESS",
+            "count" : 1
+            }, {
+            "customerId" : null,
+            "entityName" : "GNLD",
+            "status" : "FAILED",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "GNLD",
+            "status" : "RUNNING",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "PUOR",
+            "status" : "RUNNING",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "SUPL_ADDR",
+            "status" : "FAILED",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "SUPL_ADDR",
+            "status" : "RUNNING",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "SUPL_HEAD",
+            "status" : "FAILED",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "SUPL_HEAD",
+            "status" : "RUNNING",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "SUPL_HEAD",
+            "status" : "SUCCESS",
+            "count" : 0
+            }, {
+            "customerId" : null,
+            "entityName" : "SUPL_SITE",
+            "status" : "SUCCESS",
+            "count" : 0
+            } ]
+            }
+        ]
+        
+## Conversions Validation Report [/report/validation/]
+
+### List All Conversion Validations count [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                {
+                    "choice": "Swift",
+                    "votes": 2048
+                },
+                {
+                    "choice": "Python",
+                    "votes": 1024
+                },
+                {
+                    "choice": "Objective-C",
+                    "votes": 512
+                },
+                {
+                    "choice": "Ruby",
+                    "votes": 256
+                }
+                ]
+            }
+        ]
             ]
         }
